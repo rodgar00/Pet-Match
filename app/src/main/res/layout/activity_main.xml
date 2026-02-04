@@ -11,21 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingBottom="8dp">
+            android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/logoApp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_logo_app"
-                android:contentDescription="Logo App" />
+                />
 
             <View
                 android:layout_width="0dp"
@@ -37,7 +37,6 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_menu"
-                android:contentDescription="Menú"
                 android:clickable="true"
                 android:focusable="true" />
         </LinearLayout>
