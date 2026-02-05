@@ -15,7 +15,7 @@
         />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/LoginGLh1"
+        android:id="@+id/RegisterGLh1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -23,23 +23,23 @@
         />
 
     <ImageView
-        android:id="@+id/LoginLogo"
+        android:id="@+id/RegisterLogo"
         android:layout_width="135dp"
         android:layout_height="130dp"
         android:src="@drawable/pet_match2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginGLh1"
+        app:layout_constraintTop_toBottomOf="@id/RegisterGLh1"
         />
 
     <TextView
-        android:id="@+id/LoginAppName"
+        android:id="@+id/RegisterAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginLogo"
+        app:layout_constraintTop_toBottomOf="@id/RegisterLogo"
         android:textSize="35sp"
         android:textColor="@color/black"
         android:fontFamily="@font/inder"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/LoginGLv1"
+        android:id="@+id/RegisterGLv1"
         app:layout_constraintGuide_percent="0.2"
         />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/LoginGLv2"
+        android:id="@+id/RegisterGLv2"
         app:layout_constraintGuide_percent="0.8"
         />
 
@@ -69,9 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
 
-        app:layout_constraintTop_toBottomOf="@id/LoginAppName"
-        app:layout_constraintStart_toStartOf="@id/LoginGLv1"
-        app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
+        app:layout_constraintTop_toBottomOf="@id/RegisterAppName"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
 
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
@@ -79,7 +79,7 @@
         app:cardBackgroundColor="@android:color/white">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LoginTILuserName"
+            android:id="@+id/RegisterTILuserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@android:color/transparent"
@@ -108,8 +108,8 @@
         android:layout_marginTop="5dp"
 
         app:layout_constraintTop_toBottomOf="@id/CardUser"
-        app:layout_constraintStart_toStartOf="@id/LoginGLv1"
-        app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
 
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
@@ -117,7 +117,7 @@
         app:cardBackgroundColor="@android:color/white">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LoginTILpassword"
+            android:id="@+id/RegisterTILpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
@@ -145,8 +145,8 @@
         android:layout_marginTop="100dp"
 
         app:layout_constraintTop_toBottomOf="@id/CardUser"
-        app:layout_constraintStart_toStartOf="@id/LoginGLv1"
-        app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
+        app:layout_constraintStart_toStartOf="@id/RegisterGLv1"
+        app:layout_constraintEnd_toEndOf="@id/RegisterGLv2"
 
         app:cardCornerRadius="15dp"
         app:cardElevation="8dp"
@@ -154,7 +154,7 @@
         app:cardBackgroundColor="@android:color/white">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LoginTILpassword2"
+            android:id="@+id/RegisterTILpassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
@@ -177,7 +177,7 @@
 
 
     <Button
-        android:id="@+id/LoginButton"
+        android:id="@+id/RegisterButton"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:text="Registrarse"
@@ -189,7 +189,7 @@
         />
 
     <TextView
-        android:id="@+id/LoginTVRegister"
+        android:id="@+id/RegisterTVRed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -197,11 +197,11 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginButton"
+        app:layout_constraintTop_toBottomOf="@id/RegisterButton"
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/LoginTVOlvidar"
+        android:id="@+id/RegisterTVCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -209,7 +209,7 @@
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LoginTVRegister"
+        app:layout_constraintTop_toBottomOf="@id/RegisterTVRed"
         android:textColor="@color/black"/>
 
 
