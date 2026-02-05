@@ -1,8 +1,10 @@
 package com.rodgar00.petmatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+
+
     }
 
     private void buscarPerro(String breed) {
@@ -93,4 +97,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-

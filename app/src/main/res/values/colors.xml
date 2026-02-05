@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+
+        <!-- Login y Registro -->
+        <color name="login_start">#35B952</color>
+        <color name="login_end">#6AEA61</color>
+
+
+        <!-- Buscadores -->
+        <color name="search_background">#F0F2F5</color>
+        <color name="search_text">#748A9D</color>
+
+
+        <!-- Gradiente presionado -->
+        <color name="pressed_start">#6AEA61</color>
+        <color name="pressed_end">#676EEC</color>
+
+        <!-- Estado normal -->
+        <color name="button_normal">#F0F2F5</color>
+
+        <!-- Texto -->
+        <color name="button_text">#748A9D</color>
+
+
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

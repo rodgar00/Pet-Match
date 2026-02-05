@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +25,7 @@
                 android:id="@+id/logoApp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_logo_app"
+                android:src="@drawable/pet_match2"
                 />
 
             <View
@@ -40,6 +41,58 @@
                 android:clickable="true"
                 android:focusable="true" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Botón 1"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_button_selector"
+                android:textColor="@color/button_text"/>
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Botón 2"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_button_selector"
+                android:textColor="@color/button_text"/>
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Botón 3"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_button_selector"
+                android:textColor="@color/button_text"/>
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Botón 4"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_button_selector"
+                android:textColor="@color/button_text"/>
+        </LinearLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -63,6 +116,5 @@
             android:layout_marginTop="8dp" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
