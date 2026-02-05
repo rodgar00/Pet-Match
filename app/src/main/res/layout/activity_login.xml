@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:alpha="0.9"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -20,16 +19,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"
+        app:layout_constraintGuide_percent="0.05"
         />
 
     <ImageView
         android:id="@+id/LoginLogo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="135dp"
+        android:layout_height="130dp"
         android:src="@drawable/pet_match2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LoginGLh1"
         />
@@ -43,7 +41,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LoginLogo"
         android:textSize="35sp"
-        android:fontFamily="@font/akira"
         android:textColor="@color/black"
         />
 
@@ -64,49 +61,83 @@
         />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LoginTILuserName"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/CardUser"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
         app:layout_constraintTop_toBottomOf="@id/LoginAppName"
         app:layout_constraintStart_toStartOf="@id/LoginGLv1"
         app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
-        android:layout_marginTop="10dp"
-        >
-        <EditText
-            android:id="@+id/TextoEditar"
+
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@android:color/white">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/LoginTILuserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="nombre de usuario"
-            android:inputType="textPersonName"
-            android:textColor="@color/black"
-            >
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusBottomEnd="15dp">
 
-        </EditText>
+            <EditText
+                android:id="@+id/TextoEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nombre de usuario"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/LoginTILpassword"
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/CardPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/LoginTILuserName"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintTop_toBottomOf="@id/CardUser"
         app:layout_constraintStart_toStartOf="@id/LoginGLv1"
         app:layout_constraintEnd_toEndOf="@id/LoginGLv2"
-        android:layout_marginTop="10dp"
-        app:passwordToggleEnabled="true"
-        >
-        <EditText
+
+        app:cardCornerRadius="15dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@android:color/white">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/LoginTILpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
-            >
+            app:passwordToggleEnabled="true"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxCornerRadiusTopStart="15dp"
+            app:boxCornerRadiusTopEnd="15dp"
+            app:boxCornerRadiusBottomStart="15dp"
+            app:boxCornerRadiusBottomEnd="15dp">
 
-        </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="@color/black"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <Button
         android:id="@+id/LoginButton"
@@ -116,7 +147,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginTILpassword"
+        app:layout_constraintTop_toBottomOf="@id/CardPassword"
         />
 
     <TextView
