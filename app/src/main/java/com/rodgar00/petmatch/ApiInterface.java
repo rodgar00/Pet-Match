@@ -3,14 +3,18 @@ package com.rodgar00.petmatch;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
     @Multipart
@@ -54,5 +58,10 @@ public interface ApiInterface {
             @Part("es_refugio") RequestBody esRefugio,
             @Part("raza") RequestBody raza,
             @Part okhttp3.MultipartBody.Part imagen
+    );
+    @DELETE("favoritos/")
+    Call<Void> eliminarFavorito(
+            @Query("nombre") String nombre,
+            @Query("duenyo") String duenyo
     );
 }

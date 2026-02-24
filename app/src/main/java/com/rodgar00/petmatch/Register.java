@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 public class Register extends AppCompatActivity {
 
@@ -82,7 +84,7 @@ public class Register extends AppCompatActivity {
 
                 JSONObject body = new JSONObject();
                 body.put("email", email);
-                body.put("username", email.split("@")[0]);
+                body.put("username", email);
                 body.put("first_name", "Usuario");
                 body.put("last_name", "Prueba");
                 body.put("password1", password1);
@@ -101,22 +103,37 @@ public class Register extends AppCompatActivity {
                 while ((line = reader.readLine()) != null) result.append(line);
                 reader.close();
 
-                JSONObject response = new JSONObject(result.toString());
-
-                if (response.getBoolean("success")) {
+                if (responseCode == 200 || responseCode == 201) {
                     runOnUiThread(() -> {
-                        Toast.makeText(Register.this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, "Usuario Registrado Correctamente", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(Register.this, Login.class));
                         finish();
                     });
                 } else {
-                    runOnUiThread(() -> {
-                        try {
-                            Toast.makeText(Register.this, "Error: " + response.getJSONArray("errors").getString(0), Toast.LENGTH_LONG).show();
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                    String errorMessage = "Error desconocido";
+
+                    try {
+                        JSONObject errorJson = new JSONObject(result.toString());
+                        Iterator<String> keys = errorJson.keys();
+
+                        if (keys.hasNext()) {
+                            String key = keys.next();
+                            Object value = errorJson.get(key);
+
+                            if (value instanceof JSONArray) {
+                                errorMessage = ((JSONArray) value).getString(0);
+                            } else {
+                                errorMessage = value.toString();
+                            }
                         }
-                    });
+
+                    } catch (Exception e) {
+                        errorMessage = result.toString();
+                    }
+                    String finalErrorMessage = errorMessage;
+                    runOnUiThread(() ->
+                            Toast.makeText(Register.this, finalErrorMessage, Toast.LENGTH_LONG).show()
+                    );
                 }
 
             } catch (Exception e) {
