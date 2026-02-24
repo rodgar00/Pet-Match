@@ -23,6 +23,8 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
     private ArrayList<DogModel> dogModels;
     private String tablaActual = "adoptados";
 
+    private ArrayList<String> favoritosLocales = new ArrayList<>();
+
     public DogRecycler(Context context, ArrayList<DogModel> dogModels) {
         this.context = context;
         this.dogModels = dogModels;
@@ -58,6 +60,15 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
 
         if (tablaActual.equals("adoptados")) {
             holder.btnFavorito.setVisibility(View.VISIBLE);
+
+            if (favoritosLocales.contains(dog.getNombre())) {
+                holder.btnFavorito.setImageResource(R.drawable.ic_favorite_filled);
+                holder.btnFavorito.setEnabled(false);
+            } else {
+                holder.btnFavorito.setImageResource(R.drawable.ic_favorite_border);
+                holder.btnFavorito.setEnabled(true);
+            }
+
         } else {
             holder.btnFavorito.setVisibility(View.GONE);
         }
@@ -65,19 +76,15 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
         holder.btnFavorito.setOnClickListener(v -> {
             Toast.makeText(context, "Guardando en favoritos...", Toast.LENGTH_SHORT).show();
 
-            // 1. Convertimos los textos simples a RequestBody (el formato que exige Multipart)
             okhttp3.RequestBody nombrePart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getNombre() != null ? dog.getNombre() : "");
             okhttp3.RequestBody duenyoPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getDuenyo() != null ? dog.getDuenyo() : "");
             okhttp3.RequestBody edadPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(dog.getEdad()));
             okhttp3.RequestBody localizacionPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getLocalizacion() != null ? dog.getLocalizacion() : "");
             okhttp3.RequestBody descripcionPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getDescripcion() != null ? dog.getDescripcion() : "");
             okhttp3.RequestBody categoriaPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getCategoria() != null ? dog.getCategoria() : "Otro");
-
-            // ATENCIÓN: Asegúrate de que este nombre ("es_refugio" o "esRefugio") coincide con lo que espera Django en tu ApiInterface
             okhttp3.RequestBody refugioPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(dog.getEsRefugio()));
             okhttp3.RequestBody razaPart = okhttp3.RequestBody.create(okhttp3.MultipartBody.FORM, dog.getRaza() != null ? dog.getRaza() : "sin raza");
 
-            // 2. Usamos Glide para descargar la foto y convertirla en bits
             Glide.with(context)
                     .asBitmap()
                     .load(dog.getImagen())
@@ -85,17 +92,14 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
                         @Override
                         public void onResourceReady(@NonNull android.graphics.Bitmap resource, @androidx.annotation.Nullable com.bumptech.glide.request.transition.Transition<? super android.graphics.Bitmap> transition) {
 
-                            // Convertimos el Bitmap a una cadena de bits (ByteArray)
                             java.io.ByteArrayOutputStream stream = new java.io.ByteArrayOutputStream();
                             resource.compress(android.graphics.Bitmap.CompressFormat.JPEG, 80, stream);
                             byte[] byteArray = stream.toByteArray();
 
-                            // Creamos la parte de la imagen para Retrofit
                             okhttp3.RequestBody requestFile = okhttp3.RequestBody.create(okhttp3.MediaType.parse("image/jpeg"), byteArray);
                             okhttp3.MultipartBody.Part bodyImagen = okhttp3.MultipartBody.Part.createFormData("imagen", "favorito.jpg", requestFile);
 
-                            // 3. Hacemos la llamada a la API
-                            hacerLlamadaFavoritos(nombrePart, duenyoPart, edadPart, localizacionPart, descripcionPart, categoriaPart, refugioPart, razaPart, bodyImagen, dog.getNombre());
+                            hacerLlamadaFavoritos(nombrePart, duenyoPart, edadPart, localizacionPart, descripcionPart, categoriaPart, refugioPart, razaPart, bodyImagen, dog.getNombre(), holder.btnFavorito);
                         }
 
                         @Override
@@ -104,8 +108,8 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
 
                         @Override
                         public void onLoadFailed(@androidx.annotation.Nullable android.graphics.drawable.Drawable errorDrawable) {
-                            // Si el perrito NO tiene foto o falla la descarga, enviamos los datos sin imagen
-                            hacerLlamadaFavoritos(nombrePart, duenyoPart, edadPart, localizacionPart, descripcionPart, categoriaPart, refugioPart, razaPart, null, dog.getNombre());
+                            // Si falla la descarga, enviamos los datos sin imagen
+                            hacerLlamadaFavoritos(nombrePart, duenyoPart, edadPart, localizacionPart, descripcionPart, categoriaPart, refugioPart, razaPart, null, dog.getNombre(), holder.btnFavorito);
                         }
                     });
         });
@@ -137,10 +141,10 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
         return dogModels.size();
     }
 
-    // AÑADIDO: Este es el método que te faltaba pegar
     private void hacerLlamadaFavoritos(okhttp3.RequestBody nombre, okhttp3.RequestBody duenyo, okhttp3.RequestBody edad,
                                        okhttp3.RequestBody localizacion, okhttp3.RequestBody descripcion, okhttp3.RequestBody categoria,
-                                       okhttp3.RequestBody refugio, okhttp3.RequestBody raza, okhttp3.MultipartBody.Part imagen, String nombrePerro) {
+                                       okhttp3.RequestBody refugio, okhttp3.RequestBody raza, okhttp3.MultipartBody.Part imagen,
+                                       String nombrePerro, ImageView btnFavorito) {
 
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Void> call = apiService.guardarFavorito(nombre, duenyo, edad, localizacion, descripcion, categoria, refugio, raza, imagen);
@@ -150,6 +154,11 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
             public void onResponse(@NonNull Call<Void> call, @NonNull retrofit2.Response<Void> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(context, nombrePerro + " añadido a favoritos", Toast.LENGTH_SHORT).show();
+
+                    favoritosLocales.add(nombrePerro);
+                    btnFavorito.setImageResource(R.drawable.ic_favorite_filled);
+                    btnFavorito.setEnabled(false);
+
                 } else {
                     Toast.makeText(context, "Error al guardar: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
