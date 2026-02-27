@@ -1,26 +1,18 @@
 package com.rodgar00.petmatch;
 
 import java.util.List;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-
 
     @Multipart
     @POST("crear_adoptado/")
@@ -76,7 +68,6 @@ public interface ApiInterface {
     @GET("favoritos/")
     Call<List<DogModel>> getFavoritos();
 
-
     @Multipart
     @POST("favoritos/")
     Call<Void> guardarFavorito(
@@ -86,12 +77,13 @@ public interface ApiInterface {
             @Part("localizacion") RequestBody localizacion,
             @Part("descripcion") RequestBody descripcion,
             @Part("categoria") RequestBody categoria,
-            @Part("es_refugio") RequestBody esRefugio,
+            @Part("esRefugio") RequestBody esRefugio,
             @Part("raza") RequestBody raza,
-            @Part okhttp3.MultipartBody.Part imagen
+            @Part MultipartBody.Part imagen
     );
 
-    @DELETE("favoritos/")
+    // DELETE por nombre y dueño, compatible con tu backend
+    @DELETE("favoritos/eliminar_por_nombre_duenyo/")
     Call<Void> eliminarFavorito(
             @Query("nombre") String nombre,
             @Query("duenyo") String duenyo
@@ -101,6 +93,7 @@ public interface ApiInterface {
     Call<List<DogModel>> getMascotasPersonales(
             @Query("email") String email
     );
+
     @Multipart
     @POST("mascotas_personales/")
     Call<DogModel> crearMascotaPersonal(
@@ -110,5 +103,4 @@ public interface ApiInterface {
             @Part("email_propietario") RequestBody email,
             @Part MultipartBody.Part imagen
     );
-
 }

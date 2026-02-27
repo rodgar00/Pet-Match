@@ -83,7 +83,8 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
             if (currentPosition == RecyclerView.NO_POSITION) return;
 
             if (tablaActual.equals("favoritos")) {
-                hacerLlamadaEliminarFavorito(dog, currentPosition);
+                // Usamos DELETE por nombre y dueño
+                hacerLlamadaEliminarFavorito(dog.getNombre(), dog.getDuenyo(), currentPosition);
             } else {
                 holder.btnFavorito.setImageResource(R.drawable.ic_favorite_filled);
                 holder.btnFavorito.setEnabled(false);
@@ -183,9 +184,9 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
         });
     }
 
-    private void hacerLlamadaEliminarFavorito(DogModel dog, int position) {
+    private void hacerLlamadaEliminarFavorito(String nombre, String duenyo, int position) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<Void> call = apiService.eliminarFavorito(dog.getNombre(), dog.getDuenyo());
+        Call<Void> call = apiService.eliminarFavorito(nombre, duenyo);
 
         call.enqueue(new retrofit2.Callback<Void>() {
             @Override
@@ -194,7 +195,7 @@ public class DogRecycler extends RecyclerView.Adapter<DogRecycler.DogViewHolder>
                     dogModels.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, dogModels.size());
-                    Toast.makeText(context, dog.getNombre() + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, nombre + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Error al eliminar: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
