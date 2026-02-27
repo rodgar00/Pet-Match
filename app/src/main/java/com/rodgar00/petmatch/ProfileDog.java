@@ -53,7 +53,7 @@ public class ProfileDog extends Activity {
         String descripcionDog = intent.getStringExtra("descripcion");
         String imagenDog = intent.getStringExtra("imagen");
 
-        // Cargar imagen con Glide solo si hay una URL válida
+
         if (imagenDog != null && !imagenDog.isEmpty()) {
             Glide.with(this)
                     .load(imagenDog)
@@ -96,7 +96,7 @@ public class ProfileDog extends Activity {
         if (localizacionDog != null) localizacion.setText(localizacionDog);
         if (descripcionDog != null) descripcion.setText(descripcionDog);
 
-        // Cargar imagen con Glide solo si hay una URL válida
+
         if (imagenDog != null && !imagenDog.isEmpty()) {
             Glide.with(this)
                     .load(imagenDog)

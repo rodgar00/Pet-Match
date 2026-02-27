@@ -31,7 +31,6 @@ public class DogModel {
     @SerializedName("imagen")
     private String imagen;
 
-    // Constructor completo
     public DogModel(String nombre, String duenyo, int edad, String localizacion,
                     String descripcion, String categoria, boolean esRefugio, String raza, String imagen) {
         this.nombre = nombre;
@@ -55,4 +54,5 @@ public class DogModel {
     public String getCategoria() { return categoria != null ? categoria : "Desconocida"; }
     public boolean getEsRefugio() { return esRefugio; }
     public String getImagen() { return imagen != null ? imagen : ""; }
+
 }
