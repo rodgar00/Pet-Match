@@ -43,7 +43,6 @@
                 android:focusable="true" />
         </LinearLayout>
 
-        <!-- SCROLL -->
         <ScrollView
             android:id="@+id/miScrollView"
             android:layout_width="match_parent"
@@ -55,7 +54,6 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <!-- CARD 1 -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardrefugio1"
                     android:layout_width="match_parent"
@@ -321,16 +319,15 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/drawer_header"
-        >
+        app:menu="@menu/drawer_menu">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/tvSaludo"
@@ -338,16 +335,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Hola, Rescatador!"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black" />
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/Close"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_close"
-                android:contentDescription="Cerrar menú" />
+                android:contentDescription="Cerrar menú"
+                android:src="@drawable/ic_close" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 

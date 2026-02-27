@@ -53,4 +53,5 @@ public class DogModel {
     public String getCategoria() { return categoria != null ? categoria : "Desconocida"; }
     public boolean getEsRefugio() { return esRefugio; }
     public String getImagen() { return imagen != null ? imagen : ""; }
+
 }

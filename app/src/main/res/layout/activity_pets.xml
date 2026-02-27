@@ -18,14 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="15dp"
             android:paddingBottom="20dp">
 
             <ImageView
                 android:id="@+id/logoApp"
                 android:layout_width="90dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="5dp"
                 android:src="@drawable/pet_match2" />
 
             <View
@@ -37,10 +37,7 @@
                 android:id="@+id/menuHamburguesa"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_menu"
-                android:clickable="true"
-                android:focusable="true" />
+                android:src="@drawable/ic_menu" />
         </LinearLayout>
 
         <TextView
@@ -54,122 +51,16 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"/>
 
-        <ScrollView
-            android:id="@+id/scrollPets"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPets"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tvTitle"
             android:layout_above="@id/btnAddPet"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:padding="8dp" />
 
-            <LinearLayout
-                android:id="@+id/containerCardsVertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/containerCards"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:padding="8dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardPet1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="6dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/ivPetImage1"
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/aslantico" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:id="@+id/tvPetName1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nombre: Aslan"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="end"
-                                    android:src="@drawable/ic_edit" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- CARD 2 -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardPet2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="20dp"
-                        app:cardElevation="6dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="150dp"
-                                android:scaleType="centerCrop"
-                                android:src="@drawable/chulapo" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:padding="12dp">
-
-                                <TextView
-                                    android:id="@+id/tvPetName2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nombre: Chulapo"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_gravity="end"
-                                    android:src="@drawable/ic_edit" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </ScrollView>
-
-        <!-- BOTON AGREGAR -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddPet"
             android:layout_width="wrap_content"
@@ -177,13 +68,11 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="20dp"
-            android:contentDescription="Agregar mascota"
             app:srcCompat="@drawable/ic_add"
-            app:backgroundTint="@color/blanco_hueso"/>
+            app:backgroundTint="#FFFFFF"/>
 
     </RelativeLayout>
 
-    <!-- MENU LATERAL -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"

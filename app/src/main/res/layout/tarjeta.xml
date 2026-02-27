@@ -80,6 +80,21 @@
                 android:textSize="14sp"
                 android:layout_marginTop="2dp"/>
 
+            <TextView
+                android:id="@+id/textoEdad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edad: "
+                android:textSize="14sp"
+                android:layout_marginTop="2dp"/>
+            <TextView
+                android:id="@+id/textoraza"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="raza: "
+                android:textSize="14sp"
+                android:layout_marginTop="2dp"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
