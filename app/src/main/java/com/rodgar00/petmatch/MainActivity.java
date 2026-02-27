@@ -41,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
     Button btn1, btn2, btn3, btn4;
 
+    // VARIABLE PARA RECORDAR QUÉ TABLA ESTÁ PULSADA
+    private String tablaSeleccionada = "adoptados";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // --- Inicializar vistas ---
         searchBar = findViewById(R.id.searchBar);
         recyclerView = findViewById(R.id.characterRecycler);
         btn1 = findViewById(R.id.btn1);
@@ -66,30 +68,28 @@ public class MainActivity extends AppCompatActivity {
 
         api = ApiClient.getClient().create(ApiInterface.class);
 
-        // --- Botones (NO se modifican) ---
         btn1.setOnClickListener(v -> seleccionarBoton(btn1, "adoptados"));
         btn2.setOnClickListener(v -> seleccionarBoton(btn2, "encontrados"));
         btn3.setOnClickListener(v -> seleccionarBoton(btn3, "perdidos"));
         btn4.setOnClickListener(v -> seleccionarBoton(btn4, "favoritos"));
 
-        // Carga inicial
+        // Seleccionamos la primera por defecto al abrir la app
         seleccionarBoton(btn1, "adoptados");
 
-        // Floating Action Button
         FloatingActionButton buttonAdd = findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AgregarAnimalActivity.class);
+            // PASAMOS LA TABLA ACTUAL A LA OTRA PANTALLA
+            intent.putExtra("TABLA_DESTINO", tablaSeleccionada);
             startActivity(intent);
         });
 
-        // --- Barra de búsqueda ---
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 String texto = s.toString().toLowerCase();
                 dogList.clear();
 
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-
                 adapter.notifyDataSetChanged();
             }
 
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        // --- Menu lateral ---
         menuHamburguesa.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.END));
         closeMenu.setOnClickListener(v -> drawerLayout.closeDrawer(GravityCompat.END));
 
@@ -132,10 +130,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // --- Selección de botón ---
     private void seleccionarBoton(Button boton, String tabla) {
         desmarcarTodos();
         boton.setSelected(true);
+        tablaSeleccionada = tabla; // ACTUALIZAMOS LA VARIABLE AQUÍ
         buscarAnimales(tabla);
     }
 
@@ -146,12 +144,8 @@ public class MainActivity extends AppCompatActivity {
         btn4.setSelected(false);
     }
 
-    // --- Buscar animales según tabla ---
     private void buscarAnimales(String tabla) {
-
-        // AVISAMOS AL ADAPTER EN QUÉ PESTAÑA ESTAMOS
         adapter.setTablaActual(tabla);
-
         Call<List<DogModel>> call;
 
         switch (tabla) {
@@ -175,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<DogModel>> call, Response<List<DogModel>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-
                     listaCompleta.clear();
                     listaCompleta.addAll(response.body());
 
@@ -183,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                     dogList.addAll(listaCompleta);
 
                     adapter.notifyDataSetChanged();
-
                 } else {
                     Toast.makeText(MainActivity.this,
                             "Error en la respuesta: " + response.code(),

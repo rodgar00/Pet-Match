@@ -33,7 +33,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Bind views según tu XML
         registerTILEmail = findViewById(R.id.RegisterTILEmail);
         registerTILPassword = findViewById(R.id.RegisterTILPassword);
         registerTILPasswordConfirm = findViewById(R.id.RegisterTILPasswordConfirm);
@@ -41,7 +40,6 @@ public class Register extends AppCompatActivity {
         registerTVLogin = findViewById(R.id.RegisterTVLogin);
         loginTVInvitado = findViewById(R.id.LoginTVInvitado);
 
-        // Botón registrar
         registerButton.setOnClickListener(v -> {
             String email = registerTILEmail.getEditText().getText().toString().trim();
             String password1 = registerTILPassword.getEditText().getText().toString().trim();
@@ -57,16 +55,13 @@ public class Register extends AppCompatActivity {
                 return;
             }
 
-            // Llamada al backend
             registerUser(email, password1, password2);
         });
 
-        // Botón login
         registerTVLogin.setOnClickListener(v -> {
             startActivity(new Intent(Register.this, Login.class));
         });
 
-        // Botón invitado
         loginTVInvitado.setOnClickListener(v -> {
             startActivity(new Intent(Register.this, MainActivity.class));
             finish();

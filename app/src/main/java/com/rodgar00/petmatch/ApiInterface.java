@@ -1,26 +1,50 @@
 package com.rodgar00.petmatch;
 
 import java.util.List;
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Header;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
+
+
     @Multipart
-    @POST("crear_animal/")
-        // <-- cambiar la URL a la nueva
-    Call<DogModel> crearAnimal(
+    @POST("crear_adoptado/")
+    Call<DogModel> crearAdoptado(
+            @Part("nombre") RequestBody nombre,
+            @Part("duenyo") RequestBody duenyo,
+            @Part("edad") RequestBody edad,
+            @Part("localizacion") RequestBody localizacion,
+            @Part("descripcion") RequestBody descripcion,
+            @Part("categoria") RequestBody categoria,
+            @Part("raza") RequestBody raza,
+            @Part MultipartBody.Part imagen
+    );
+
+    @Multipart
+    @POST("crear_encontrado/")
+    Call<DogModel> crearEncontrado(
+            @Part("nombre") RequestBody nombre,
+            @Part("duenyo") RequestBody duenyo,
+            @Part("edad") RequestBody edad,
+            @Part("localizacion") RequestBody localizacion,
+            @Part("descripcion") RequestBody descripcion,
+            @Part("categoria") RequestBody categoria,
+            @Part("raza") RequestBody raza,
+            @Part MultipartBody.Part imagen
+    );
+
+    @Multipart
+    @POST("crear_perdido/")
+    Call<DogModel> crearPerdido(
             @Part("nombre") RequestBody nombre,
             @Part("duenyo") RequestBody duenyo,
             @Part("edad") RequestBody edad,
@@ -46,6 +70,7 @@ public interface ApiInterface {
     @GET("favoritos/")
     Call<List<DogModel>> getFavoritos();
 
+
     @Multipart
     @POST("favoritos/")
     Call<Void> guardarFavorito(
@@ -59,6 +84,7 @@ public interface ApiInterface {
             @Part("raza") RequestBody raza,
             @Part okhttp3.MultipartBody.Part imagen
     );
+
     @DELETE("favoritos/")
     Call<Void> eliminarFavorito(
             @Query("nombre") String nombre,

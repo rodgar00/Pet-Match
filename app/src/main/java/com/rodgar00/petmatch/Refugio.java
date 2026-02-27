@@ -61,7 +61,6 @@ public class Refugio extends Activity {
             return true;
         });
 
-        //La tarjeta de cada Refugio
 
         CardView cardRefugio = findViewById(R.id.cardrefugio1);
         final LinearLayout layoutDetalles = findViewById(R.id.layoutDetalles);
@@ -108,8 +107,8 @@ public class Refugio extends Activity {
         cardRefugio4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (layoutDetalles4.getVisibility() == View.GONE)  { //Gone se encarga de no ocupar espacio
-                    layoutDetalles4.setVisibility(View.VISIBLE); //Aqui se encarga que cuando haga CLICK sea visible
+                if (layoutDetalles4.getVisibility() == View.GONE)  {
+                    layoutDetalles4.setVisibility(View.VISIBLE);
                 } else {
                     layoutDetalles4.setVisibility(View.GONE);
                 }

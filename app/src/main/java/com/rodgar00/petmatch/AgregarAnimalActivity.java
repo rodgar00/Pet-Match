@@ -1,6 +1,5 @@
 package com.rodgar00.petmatch;
 
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -36,6 +35,9 @@ public class AgregarAnimalActivity extends AppCompatActivity {
     Uri imageUri;
     ApiInterface api;
 
+    // VARIABLE PARA SABER A QUÉ TABLA SUBIRLO
+    private String tablaDestino = "adoptados";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,16 @@ public class AgregarAnimalActivity extends AppCompatActivity {
         imgPreview = findViewById(R.id.imgPreview);
 
         api = ApiClient.getClient().create(ApiInterface.class);
+
+        // RECUPERAMOS LA TABLA SELECCIONADA DESDE EL MAINACTIVITY
+        if (getIntent().hasExtra("TABLA_DESTINO")) {
+            tablaDestino = getIntent().getStringExtra("TABLA_DESTINO");
+        }
+
+        // Si por casualidad se intenta añadir desde favoritos, forzamos a adoptados
+        if (tablaDestino != null && tablaDestino.equals("favoritos")) {
+            tablaDestino = "adoptados";
+        }
 
         btnSeleccionarImagen.setOnClickListener(v -> seleccionarImagen());
         btnAgregarAnimal.setOnClickListener(v -> subirAnimal());
@@ -89,26 +101,40 @@ public class AgregarAnimalActivity extends AppCompatActivity {
 
         MultipartBody.Part imagenPart = null;
         if (imageUri != null) {
-            if (Build.VERSION.SDK_INT >= 30){
-                if (!Environment.isExternalStorageManager()){
+            if (Build.VERSION.SDK_INT >= 30) {
+                if (!Environment.isExternalStorageManager()) {
                     Intent getpermission = new Intent();
                     getpermission.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
                     startActivity(getpermission);
                 }
-
-                File file = new File(FileUtils.getPath(this, imageUri)); // Necesitas FileUtils para obtener path real
-            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
-            imagenPart = MultipartBody.Part.createFormData("imagen", file.getName(), requestFile);
-
             }
 
+            File file = new File(FileUtils.getPath(this, imageUri));
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+            imagenPart = MultipartBody.Part.createFormData("imagen", file.getName(), requestFile);
+        }
 
-            Call<DogModel> call = api.crearAnimal(nombre, duenyo, edad, localizacion, descripcion, categoria, raza, imagenPart);
+        Call<DogModel> call;
+
+        // ELEGIMOS EL ENDPOINT CORRECTO DEPENDIENDO DE LA TABLA
+        switch (tablaDestino) {
+            case "encontrados":
+                call = api.crearEncontrado(nombre, duenyo, edad, localizacion, descripcion, categoria, raza, imagenPart);
+                break;
+            case "perdidos":
+                call = api.crearPerdido(nombre, duenyo, edad, localizacion, descripcion, categoria, raza, imagenPart);
+                break;
+            case "adoptados":
+            default:
+                call = api.crearAdoptado(nombre, duenyo, edad, localizacion, descripcion, categoria, raza, imagenPart);
+                break;
+        }
+
         call.enqueue(new Callback<DogModel>() {
             @Override
             public void onResponse(Call<DogModel> call, Response<DogModel> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(AgregarAnimalActivity.this, "Animal agregado correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AgregarAnimalActivity.this, "Añadido correctamente a " + tablaDestino, Toast.LENGTH_SHORT).show();
                     finish(); // cerrar actividad
                 } else {
                     Toast.makeText(AgregarAnimalActivity.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
@@ -122,4 +148,4 @@ public class AgregarAnimalActivity extends AppCompatActivity {
             }
         });
     }
-}}
+}

@@ -31,7 +31,6 @@ public class FavoritoRequest {
     @SerializedName("imagen")
     private String imagen;
 
-    // Constructor completo
     public FavoritoRequest(String nombre, String duenyo, int edad, String localizacion,
                            String descripcion, String categoria, boolean esRefugio, String raza, String imagen) {
         this.nombre = nombre;
@@ -45,7 +44,6 @@ public class FavoritoRequest {
         this.imagen = imagen;
     }
 
-    // --- GETTERS ---
     public String getNombre() { return nombre; }
     public String getRaza() { return raza; }
     public String getDuenyo() { return duenyo; }
@@ -56,7 +54,6 @@ public class FavoritoRequest {
     public boolean isEsRefugio() { return esRefugio; }
     public String getImagen() { return imagen; }
 
-    // --- SETTERS ---
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setRaza(String raza) { this.raza = raza; }
     public void setDuenyo(String duenyo) { this.duenyo = duenyo; }

@@ -31,8 +31,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Bind views
-        loginTILEmail = findViewById(R.id.LoginTILuserName);  // TextInputLayout para email
+        loginTILEmail = findViewById(R.id.LoginTILuserName);
         loginTILPassword = findViewById(R.id.LoginTILpassword);
         loginButton = findViewById(R.id.LoginButton);
         loginTVInvitado = findViewById(R.id.LoginTVInvitado);
@@ -66,7 +65,6 @@ public class Login extends AppCompatActivity {
     private void loginUser(String email, String password, SharedPreferences.Editor editor) {
         new Thread(() -> {
             try {
-                // Cambia la IP a la de tu PC donde corre Django
                 URL url = new URL("http://10.0.2.2:8000/api/login/");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
@@ -97,7 +95,6 @@ public class Login extends AppCompatActivity {
                     String token = data.getString("token");
                     String refreshToken = data.getString("refreshToken");
 
-                    // Guardar tokens y email en SharedPreferences
                     editor.putString("accessToken", token);
                     editor.putString("refreshToken", refreshToken);
                     editor.putString("email", email);

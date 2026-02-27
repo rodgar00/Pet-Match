@@ -12,7 +12,6 @@ public class FormUtils {
     private static final String KEY_EMAIL = "USER_EMAIL";
     private static final String KEY_USERNAME = "USERNAME";
 
-    // Guardar tokens y datos del usuario
     public static void saveUserData(Context context, String accessToken, String refreshToken, String email, String username) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
