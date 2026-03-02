@@ -154,32 +154,33 @@ Emulador Android
 Dispositivo físico con modo desarrollador activado
 
 ## 📂 Estructura del proyecto ARREGLAR
-com.rodgar00.petmatch
+PetMatch/
 │
-├── activities
-├── adapters
-├── models
-├── network
-├── utils
-└── resources
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/rodgar00/petmatch/
+│   │   │   │   ├── activities/
+│   │   │   │   ├── adapters/
+│   │   │   │   ├── models/
+│   │   │   │   ├── network/
+│   │   │   │   └── utils/
+│   │   │   │
+│   │   │   ├── res/
+│   │   │   │   ├── drawable/
+│   │   │   │   ├── layout/
+│   │   │   │   ├── menu/
+│   │   │   │   └── font/
+│   │   │   │
+│   │   │   └── AndroidManifest.xml
+│   │
+│   ├── test/
+│   └── androidTest/
+│
+├── build.gradle.kts
+├── settings.gradle.kts
+└── gradle/
 
-activities → Pantallas principales
-
-adapters → RecyclerView adapters
-
-models → Modelos de datos
-
-network → Configuración Retrofit y API services
-
-utils → Funciones auxiliares
-
-## 🧪 Testing
-
-JUnit
-
-Espresso (instrumentation tests)
-
-Actualmente el proyecto incluye configuración base de testing. Puede ampliarse con mayor cobertura unitaria e integración.
 
 ## 🔮 Mejoras futuras ARREGLAR
 
