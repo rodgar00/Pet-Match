@@ -6,7 +6,7 @@ La aplicación centraliza en una sola plataforma los procesos de adopción, anim
 
 Este proyecto demuestra integración real con backend, consumo de APIs REST, gestión de sesiones, carga de imágenes y manejo estructurado de datos en un entorno Android moderno.
 
-##🚀 Características
+## 🚀 Características
 
 🔐 Registro e inicio de sesión validados mediante backend Django
 
@@ -41,11 +41,11 @@ Favoritos
 
 Java 11
 
-##🏗️ Arquitectura
+## 🏗️ Arquitectura
 
 Actualmente arquitectura basada en Activities y consumo directo de servicios REST.
 
-##📚 Jetpack Components
+## 📚 Jetpack Components
 
 AppCompat
 
@@ -59,7 +59,7 @@ Activity
 
 Material Components
 
-##🌐 Networking
+## 🌐 Networking
 
 Retrofit 2
 
@@ -69,11 +69,11 @@ OkHttp
 
 Logging Interceptor
 
-##🖼️ Carga de imágenes
+## 🖼️ Carga de imágenes
 
 Glide
 
-##🔐 Seguridad
+## 🔐 Seguridad
 
 BCrypt (validación y encriptación)
 
@@ -89,7 +89,7 @@ minSdk 24
 
 targetSdk 36
 
-##🧠 Arquitectura
+## 🧠 Arquitectura
 
 La aplicación sigue una estructura modular clásica basada en:
 
@@ -123,7 +123,7 @@ Gestión de favoritos
 /screenshots/main_tabs.png
 /screenshots/publicar_animal.png
 /screenshots/menu_hamburguesa.png
-##⚙️ Instalación ARREGLAR
+## ⚙️ Instalación ARREGLAR
 
 Clona el repositorio:
 
@@ -141,7 +141,7 @@ Servidor Django corriendo
 
 Sincroniza Gradle.
 
-##▶️ Ejecución
+## ▶️ Ejecución
 
 Inicia el servidor Django (necesario para autenticación y datos).
 
@@ -153,7 +153,7 @@ Emulador Android
 
 Dispositivo físico con modo desarrollador activado
 
-##📂 Estructura del proyecto ARREGLAR
+## 📂 Estructura del proyecto ARREGLAR
 com.rodgar00.petmatch
 │
 ├── activities
@@ -173,7 +173,7 @@ network → Configuración Retrofit y API services
 
 utils → Funciones auxiliares
 
-##🧪 Testing
+## 🧪 Testing
 
 JUnit
 
@@ -181,19 +181,15 @@ Espresso (instrumentation tests)
 
 Actualmente el proyecto incluye configuración base de testing. Puede ampliarse con mayor cobertura unitaria e integración.
 
-##🔮 Mejoras futuras ARREGLAR
+## 🔮 Mejoras futuras ARREGLAR
 
 
 
 
-##👨‍💻 Autor
+## 👨‍💻 Autor
 
 Rodrigo García
 Josué Manuel Zapata
 Stalin Libardo
 ##📎 Proyecto desarrollado como aplicación académica con enfoque en integración real cliente-servidor.
 
-##📄 Licencia
-
-Este proyecto se distribuye bajo licencia MIT.
-Puedes usarlo como referencia educativa o base para proyectos personales.
