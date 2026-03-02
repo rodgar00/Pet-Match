@@ -117,7 +117,8 @@ Gestión de favoritos
 
 ##📸 Screenshots
 
-(Añadir aquí capturas reales de la app para mejorar el portfolio) ARREGLAR
+<img src="./screenshots/login.png" width=29% style="margin-right: 20px;">
+<img src="./screenshots/main.png" width=29% style="margin-right: 20px;">
 
 /screenshots/login.png
 /screenshots/main_tabs.png
