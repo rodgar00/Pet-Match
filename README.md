@@ -127,7 +127,7 @@ Gestión de favoritos
 
 Clona el repositorio:
 
-git clone https://github.com/TU_USUARIO/PetMatch.git
+git clone https://github.com/rodgar00/Pet-Match.git
 
 Abre el proyecto en Android Studio.
 
