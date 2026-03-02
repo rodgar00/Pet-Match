@@ -88,20 +88,17 @@ public class ProfileMascotaPersonal extends Activity {
     }
 
     private void SubirMascotaPersonal(String nombre, String edad, String raza) {
-        // 1. Recuperar el email guardado
         SharedPreferences sharedPref = getSharedPreferences("MyAppPrefs", MODE_PRIVATE);
         String correoLogueado = sharedPref.getString("email", "");
 
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        // 2. Crear los RequestBody de texto
         RequestBody rbNombre = RequestBody.create(MultipartBody.FORM, nombre);
         RequestBody rbEdad = RequestBody.create(MultipartBody.FORM, edad);
         RequestBody rbRaza = RequestBody.create(MultipartBody.FORM, raza);
         RequestBody rbEmail = RequestBody.create(MultipartBody.FORM, correoLogueado);
 
-        // 3. Preparar la imagen (MultipartBody.Part)
-        MultipartBody.Part imagePart = null; // Cambiamos el nombre para no repetir
+        MultipartBody.Part imagePart = null;
         if (imageUri != null) {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(imageUri);
@@ -111,7 +108,6 @@ public class ProfileMascotaPersonal extends Activity {
                         MediaType.parse(getContentResolver().getType(imageUri)),
                         bytes
                 );
-                // "imagen" debe coincidir con el nombre en Django
                 imagePart = MultipartBody.Part.createFormData("imagen", "mascota.jpg", requestFile);
             } catch (Exception e) {
                 e.printStackTrace();

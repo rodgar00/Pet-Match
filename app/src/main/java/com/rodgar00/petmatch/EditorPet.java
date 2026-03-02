@@ -83,7 +83,6 @@ public class EditorPet extends Activity {
             return true;
         });
 
-        // 3. Mostrar los datos en la pantalla
         if (nombreDog != null) nombre.setText(nombreDog);
         if (EdadDog != null) Edad.setText(EdadDog);
         if (RazaDog != null) raza.setText(RazaDog);

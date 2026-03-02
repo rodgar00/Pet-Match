@@ -24,7 +24,6 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     @NonNull
     @Override
     public PetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflamos el diseño de la card que creamos antes
         View view = LayoutInflater.from(context).inflate(R.layout.tarjeta, parent, false);
         return new PetViewHolder(view);
     }
@@ -33,12 +32,10 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
     public void onBindViewHolder(@NonNull PetViewHolder holder, int position) {
         DogModel pet = petList.get(position);
 
-        // Llenamos los datos
         holder.txtNombre.setText(pet.getNombre());
         holder.txtEdad.setText("Edad: " + pet.getEdad());
         holder.txtRaza.setText("Raza: " + pet.getRaza());
 
-        // Manejo de la imagen desde Django
         String urlImagen = pet.getImagen();
         if (urlImagen != null && !urlImagen.startsWith("http")) {
             urlImagen = "http://10.0.2.2:8000" + urlImagen;
@@ -61,11 +58,11 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
         public PetViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Vinculamos con los IDs REALES de tu archivo tarjeta.xml
+
             txtNombre = itemView.findViewById(R.id.textoNombre);
             txtEdad = itemView.findViewById(R.id.textoEdad);
             txtRaza = itemView.findViewById(R.id.textoraza);
-            txtDuenyo = itemView.findViewById(R.id.textoDuenyo); // Opcional si quieres mostrar el dueño
+            txtDuenyo = itemView.findViewById(R.id.textoDuenyo);
             imgPet = itemView.findViewById(R.id.imagenTarjetaDog);
         }
     }

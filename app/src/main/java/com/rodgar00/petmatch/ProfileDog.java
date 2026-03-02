@@ -31,7 +31,6 @@ public class ProfileDog extends Activity {
             startActivity(intent);
         });
 
-        // 1. Enlazar con tu XML
         imageView = findViewById(R.id.TvDogPicture);
         nombre = findViewById(R.id.tvDogName);
         duenyo = findViewById(R.id.tvDogDuenio);
@@ -41,7 +40,6 @@ public class ProfileDog extends Activity {
         localizacion = findViewById(R.id.tvUserLocation);
         descripcion = findViewById(R.id.TVDogDescripcion);
 
-        // 2. Recibir los datos del Adapter
         Intent intent = getIntent();
 
         String nombreDog = intent.getStringExtra("nombre");
@@ -53,7 +51,6 @@ public class ProfileDog extends Activity {
         String descripcionDog = intent.getStringExtra("descripcion");
         String imagenDog = intent.getStringExtra("imagen");
 
-        // Cargar imagen con Glide solo si hay una URL válida
         if (imagenDog != null && !imagenDog.isEmpty()) {
             Glide.with(this)
                     .load(imagenDog)
@@ -87,7 +84,6 @@ public class ProfileDog extends Activity {
             drawerLayout.closeDrawer(GravityCompat.END);
             return true;
         });
-        // 3. Mostrar los datos en la pantalla
         if (nombreDog != null) nombre.setText(nombreDog);
         if (duenyoDog != null) duenyo.setText("Dueño: " + duenyoDog);
         if (categoriaDog != null) categoria.setText("Categoría: " + categoriaDog);
@@ -96,7 +92,6 @@ public class ProfileDog extends Activity {
         if (localizacionDog != null) localizacion.setText(localizacionDog);
         if (descripcionDog != null) descripcion.setText(descripcionDog);
 
-        // Cargar imagen con Glide solo si hay una URL válida
         if (imagenDog != null && !imagenDog.isEmpty()) {
             Glide.with(this)
                     .load(imagenDog)
