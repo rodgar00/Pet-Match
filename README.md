@@ -119,11 +119,9 @@ Gestión de favoritos
 
 <img src="./screenshots/login.png" width=29% style="margin-right: 20px;">
 <img src="./screenshots/main.png" width=29% style="margin-right: 20px;">
+<img src="./screenshots/publicar_animal.png" width=29% style="margin-right: 20px;">
+<img src="./screenshots/menu_hamburguesa.png" width=29% style="margin-right: 20px;">
 
-/screenshots/login.png
-/screenshots/main_tabs.png
-/screenshots/publicar_animal.png
-/screenshots/menu_hamburguesa.png
 ## ⚙️ Instalación ARREGLAR
 
 Clona el repositorio:
@@ -185,7 +183,13 @@ PetMatch/
 
 ## 🔮 Mejoras futuras ARREGLAR
 
-
+-Libro de mascota.
+-Conectar perreras.
+-Nueva sección de editar publicaciones de animales subidos por usuario.
+-Perfil unico para cada usuario.
+-Contacto de refugios (futuro formulario para conectar refugios).
+-Subir animal para cada seccion(perdidos y encontrados).
+-Arreglar perfil, un layout para perfil unico y para editarlo.
 
 
 ## 👨‍💻 Autor
